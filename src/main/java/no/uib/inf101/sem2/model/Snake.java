@@ -2,7 +2,6 @@ package no.uib.inf101.sem2.model;
 
 import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.grid.GridCell;
-import no.uib.inf101.sem2.model.apple.Apple;
 
 import java.util.ArrayList;
 
@@ -15,10 +14,10 @@ public class Snake {
     public Snake() {
         body = new ArrayList<GridCell<Character>>();
         // initialize the body with the starting position and length
-        body.add(new GridCell<>(new CellPosition(10, 11), 'I'));
-        body.add(new GridCell<>(new CellPosition(10, 12),'I'));
+        body.add(new GridCell<>(new CellPosition(10, 14), 'I'));
         body.add(new GridCell<>(new CellPosition(10, 13),'I'));
-        body.add(new GridCell<>(new CellPosition(10, 14),'I'));
+        body.add(new GridCell<>(new CellPosition(10, 12),'I'));
+        body.add(new GridCell<>(new CellPosition(10, 11),'I'));
         this.direction = Direction.RIGHT;
         isAlive = true;
     }

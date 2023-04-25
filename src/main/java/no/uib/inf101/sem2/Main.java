@@ -5,7 +5,6 @@ package no.uib.inf101.sem2;
 import javax.swing.JFrame;
 
 import no.uib.inf101.sem2.controller.SnakeController;
-import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.model.Snake;
 import no.uib.inf101.sem2.model.SnakeBoard;
 import no.uib.inf101.sem2.model.SnakeModel;

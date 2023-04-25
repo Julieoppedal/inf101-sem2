@@ -2,6 +2,7 @@ package no.uib.inf101.sem2.controller;
 
 import java.awt.event.KeyEvent;
 
+import no.uib.inf101.sem2.model.Direction;
 import no.uib.inf101.sem2.model.GameState;
 import no.uib.inf101.sem2.view.SnakeView;
 import javax.swing.Timer;
@@ -58,20 +59,20 @@ Responds to key pressed events from the TetrisView and updates the model and vie
             return;
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            consol.moveSnake(-1,0);
+            consol.rotateSnake(Direction.LEFT);;
             // Left arrow was pressed
         }
         else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            consol.moveSnake(1,0);
+            consol.rotateSnake(Direction.RIGHT);;
 
             // Right arrow was pressed
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            consol.moveSnake(0,1);
+            consol.rotateSnake(Direction.DOWN);;
             // Down arrow was pressed
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            consol.moveSnake(0,-1);
+            consol.rotateSnake(Direction.UP);;
             // Up arrow was pressed
         }
         else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -105,7 +106,10 @@ Updates the model and view when the timer goes.
 @param e the ActionEvent that occurred.
 */
 
+
+
     public void clockTick(ActionEvent e) {
+        consol.moveSnake();
         consol.clockTick();
         snakeView.repaint();
     }

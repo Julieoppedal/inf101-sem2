@@ -1,7 +1,6 @@
 package no.uib.inf101.sem2.model;
 
 import no.uib.inf101.sem2.grid.GridCell;
-import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.grid.GridDimension;
 
 import java.util.Timer;
@@ -9,7 +8,6 @@ import java.util.TimerTask;
 
 import no.uib.inf101.sem2.controller.ControllableSnake;
 import no.uib.inf101.sem2.view.ViewableSnakeModel;
-import no.uib.inf101.sem2.model.GameState;
 import no.uib.inf101.sem2.model.apple.Apple;
 import no.uib.inf101.sem2.model.apple.AppleFactory;
 
@@ -21,7 +19,6 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
     private GameState state;
     private Snake snake;
     private Apple apple;
-    private int applesEaten;
     private int score;
     private final Timer timer = new Timer();
     private TimerTask task;
@@ -33,7 +30,6 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
         this.appleFactory = appleFactory;
         this.apple = this.appleFactory.getApple(this.board);
         this.snake = new Snake();
-        this.applesEaten = 0;
         this.score = 0;
         this.state = GameState.ACTIVE_GAME;   
     }
@@ -72,8 +68,6 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
         
         if (headRow == this.apple.getX() && headCol == this.apple.getY()) {
             this.score += 10;
-            this.applesEaten++;
-            
             // remove the apple from the board
             this.board.removeObject(this.apple.getX(), this.apple.getY());
             
@@ -85,20 +79,13 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
         }
     }
 
-
     @Override
-    public boolean moveSnake(int deltaRow, int deltaCol) {
-        // set the direction of the snake based on the deltaRow and deltaCol values
-        if (deltaRow == 1) {
-            this.snake.setDirection(Direction.DOWN);
-        } else if (deltaRow == -1) {
-            this.snake.setDirection(Direction.UP);
-        } else if (deltaCol == 1) {
-            this.snake.setDirection(Direction.RIGHT);
-        } else if (deltaCol == -1) {
-            this.snake.setDirection(Direction.LEFT);
-        }
-        
+    public void rotateSnake(Direction dir) {
+        this.snake.setDirection(dir);
+    }
+    
+    @Override
+    public boolean moveSnake() {
         // move the snake
         this.snake.move();
         
@@ -124,21 +111,21 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
     public void restartGame() {
         this.snake = new Snake();
         this.apple = this.appleFactory.getApple(this.board);
-        this.applesEaten = 0;
         this.score = 0;
         this.state = GameState.ACTIVE_GAME;
     }
 
+
     @Override
     public int getTimeBetweenTicks() {
-        return 1000;
+        return 100;
     }
+
 
     @Override
     public void clockTick() {
-
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'clockTick'");
     }
-
-
 
 }

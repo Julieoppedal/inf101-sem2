@@ -30,7 +30,7 @@ public class DefaultColorTheme implements ColorTheme{
             case 'S' -> Color.ORANGE;
             case 'w' -> Color.WHITE;
             case 'Z' -> Color.PINK;
-            case '-' -> Color.BLACK;
+            case '-' -> Color.DARK_GRAY;
             default -> throw new IllegalArgumentException(
                 "No available color for '" + c + "'");
         };
@@ -45,7 +45,7 @@ public class DefaultColorTheme implements ColorTheme{
 
     @Override
     public Color getFrameColor() {
-        return (new Color(0, 0, 0, 0));
+        return Color.BLACK;
     }
 
 /**
@@ -56,7 +56,7 @@ public class DefaultColorTheme implements ColorTheme{
 
     @Override
     public Color getBackgroundColor() {
-        return null;
+        return Color.BLACK;
     }
 /**
  * Returns the game over screen color according to the default color scheme.
