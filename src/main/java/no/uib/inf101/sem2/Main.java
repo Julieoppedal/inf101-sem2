@@ -8,7 +8,6 @@ import no.uib.inf101.sem2.controller.SnakeController;
 import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.model.SnakeBoard;
 import no.uib.inf101.sem2.model.SnakeModel;
-import no.uib.inf101.sem2.model.apple.Apple;
 import no.uib.inf101.sem2.model.apple.AppleFactory;
 import no.uib.inf101.sem2.model.apple.RandomAppleFactory;
 import no.uib.inf101.sem2.view.SnakeView;
@@ -25,20 +24,19 @@ public class Main {
     board.set(new CellPosition(19, 0), 'r');
     board.set(new CellPosition(19, 9), 'b');
 
-    RandomAppleFactory<E> appleFactory = new RandomAppleFactory<>();
+    AppleFactory factory = new RandomAppleFactory();
     
-    Apple apple = appleFactory.getApple(board);
-  
-    SnakeModel model = new SnakeModel(board);
+    SnakeModel model = new SnakeModel(board, factory);
 
     SnakeView view = new SnakeView(model);
 
-    new SnakeController(model,view);
+    new SnakeController(model, view);
 
 
     JFrame frame = new JFrame();
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+    frame.setTitle("Snake");
     frame.setContentPane(view);
 
     frame.pack();

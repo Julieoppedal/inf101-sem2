@@ -2,6 +2,7 @@ package no.uib.inf101.sem2.model;
 
 import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.grid.GridCell;
+import no.uib.inf101.sem2.model.apple.Apple;
 
 import java.util.ArrayList;
 
@@ -86,6 +87,10 @@ public class Snake {
         // create a new tail and add it to the end of the body
         GridCell<Character> newTail = new GridCell<>(newTailPosition, 'I');
         body.add(newTail);
+    }
+
+    public boolean hasEatenApple(Apple apple) {
+        return false;
     }
 
 

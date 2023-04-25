@@ -64,6 +64,7 @@ Draws the game board, including the falling tile and the tiles already on the bo
         CellPositionToPixelConverter cptp = new CellPositionToPixelConverter(r2d, this.model.getDimension() , 2);
 
         drawCells(g2d, this.model.getTilesOnBoard(), cptp, color);
+        drawApple(g2d, this.model.getPostition(), cptp);
 
         if (model.getGameState() == GameState.GAME_OVER) {
             Color gameOverColor = color.getGameOverColor();

@@ -13,6 +13,7 @@ import no.uib.inf101.sem2.model.apple.AppleFactory;
 public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
 
     private final SnakeBoard board;
+    private final AppleFactory appleFactory;
     private GameState state;
     private Snake snake;
     private Apple apple;
@@ -20,11 +21,14 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
     private int score;
 
 
-    public SnakeModel(SnakeBoard board) {
+
+    public SnakeModel(SnakeBoard board, AppleFactory appleFactory) {
         this.board = board;
-        this.apple = apple;
-        applesEaten += score;
-        snake = new Snake();
+        this.appleFactory = appleFactory;
+        this.apple = this.appleFactory.getApple(this.board);
+        this.snake = new Snake();
+        this.applesEaten = 0;
+        this.score = 0;
         this.state = GameState.ACTIVE_GAME;   
     }
 
@@ -48,6 +52,11 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
     public Snake getSnake() {
         return this.snake;
     }
+
+    @Override
+    public Apple getPostition() {
+        return new Apple(apple.getX(), apple.getY());
+    }
     
 
     @Override
@@ -66,22 +75,25 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
         // move the snake
         this.snake.move();
         
+        // check if the snake has eaten an apple
+        if (this.snake.hasEatenApple(this.apple)) {
+            // update the score and number of apples eaten
+            this.score += 10;
+            this.applesEaten++;
+            // get a new apple and update its position
+            this.apple = this.appleFactory.getApple(this.board);
+        }
+        
         // check for collisions
         this.snake.checkCollision(board.rows(), board.cols());
         if (!this.snake.isAlive()) {
             state = GameState.GAME_OVER;
             return false;
         }
-
+    
         return true;
     }
 
-    @Override
-    public Apple getPostition() {
-        return new Apple(apple.getX(), apple.getY());
-    }
-        
      
-    
 
 }
