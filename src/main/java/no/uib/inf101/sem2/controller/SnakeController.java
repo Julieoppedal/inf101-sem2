@@ -53,20 +53,20 @@ Responds to key pressed events from the TetrisView and updates the model and vie
     @Override
     public void keyPressed(KeyEvent e){
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            consol.moveSnake(0,-1);
+            consol.moveSnake(-1,0);
             // Left arrow was pressed
         }
         else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            consol.moveSnake(0,1);
+            consol.moveSnake(1,0);
 
             // Right arrow was pressed
         }
         else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            consol.moveSnake(1,0);
+            consol.moveSnake(0,1);
             // Down arrow was pressed
         }
         else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            consol.moveSnake(-1,0);
+            consol.moveSnake(0,-1);
             // Up arrow was pressed
         }
         snakeView.repaint();

@@ -16,4 +16,6 @@ public class Apple {
     public int getY() {
         return y;
     }
+
+    
 }

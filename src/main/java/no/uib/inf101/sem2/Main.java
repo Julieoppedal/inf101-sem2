@@ -19,10 +19,6 @@ public class Main {
   public static void main(String[] args) {
     
     SnakeBoard board = new SnakeBoard(20, 20);
-    board.set(new CellPosition(0, 0), 'g');
-    board.set(new CellPosition(0, 9), 'y');
-    board.set(new CellPosition(19, 0), 'r');
-    board.set(new CellPosition(19, 9), 'b');
 
     AppleFactory factory = new RandomAppleFactory();
     

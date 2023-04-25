@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.grid.GridCell;
 import no.uib.inf101.sem2.model.GameState;
+import no.uib.inf101.sem2.model.Snake;
 import no.uib.inf101.sem2.model.apple.Apple;
 
 import java.awt.Graphics;
@@ -65,6 +66,8 @@ Draws the game board, including the falling tile and the tiles already on the bo
 
         drawCells(g2d, this.model.getTilesOnBoard(), cptp, color);
         drawApple(g2d, this.model.getPostition(), cptp);
+        drawSnake(g2d, this.model.getSnake(), cptp, color);
+
 
         if (model.getGameState() == GameState.GAME_OVER) {
             Color gameOverColor = color.getGameOverColor();
@@ -102,6 +105,22 @@ and color theme.
         Color appleColor = color.getAppleColor();
         g2d.setColor(appleColor);
         g2d.fill(appleRect);
+    }
+
+
+    private void drawSnake(Graphics2D g2d, Snake snake, CellPositionToPixelConverter cptpc, ColorTheme ct) {
+        Color snakeHeadColor = color.getSnakeHeadColor();
+        boolean isFirstCell = true;
+        for (GridCell<Character> cell : snake.getBody()) {
+            Rectangle2D cellRect = cptpc.getBoundsForCell(cell.pos());
+            Color cellColor = ct.getCellColor(cell.value());
+            if (isFirstCell) {
+                cellColor = snakeHeadColor;
+                isFirstCell = false;
+            }
+            g2d.setColor(cellColor);
+            g2d.fill(cellRect);
+        }
     }
 
 /**
