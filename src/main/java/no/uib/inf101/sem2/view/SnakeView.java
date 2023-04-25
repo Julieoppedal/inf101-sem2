@@ -1,6 +1,7 @@
 package no.uib.inf101.sem2.view;
 
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import no.uib.inf101.sem2.grid.CellPosition;
@@ -26,6 +27,7 @@ It extends the JPanel class and implements the paintComponent method to draw the
 public class SnakeView extends JPanel {
     private final ViewableSnakeModel model;
     private final ColorTheme color;
+    private final JLabel scoreLabel;
 
 
 /**
@@ -39,6 +41,11 @@ Constructs a new TetrisView object.
         this.setFocusable(true);
         this.setPreferredSize(new Dimension(300, 400));
         this.setBackground(color.getBackgroundColor());
+
+        this.scoreLabel = new JLabel();
+        this.scoreLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+        this.scoreLabel.setForeground(Color.RED);
+        this.add(scoreLabel);
     }
 /**
 
@@ -77,6 +84,8 @@ Draws the game board, including the falling tile and the tiles already on the bo
             g2d.setColor(gameOverText);
             g2d.setFont(new Font("Calibri", Font.BOLD, 30)); // sets the font to Arial, bold, size 30
             Inf101Graphics.drawCenteredString(g2d, "GAME OVER", r2d);
+            g2d.setFont(new Font("Calibri", Font.PLAIN, 20)); // set the font to Arial, size 20
+            Inf101Graphics.drawCenteredString(g2d, "Press ENTER to play again", new Rectangle2D.Double(r2d.getX(), r2d.getY() + 40, r2d.getWidth(), r2d.getHeight()));
         }
         
 
@@ -136,6 +145,9 @@ drawGame method.
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         drawGame(g2);
+        model.getScore();
+
+        scoreLabel.setText("Score: " + model.getScore());
         
     }
 

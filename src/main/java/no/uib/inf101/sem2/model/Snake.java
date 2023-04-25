@@ -89,8 +89,5 @@ public class Snake {
         body.add(newTail);
     }
 
-    public boolean hasEatenApple(Apple apple) {
-        return false;
-    }
 
 }

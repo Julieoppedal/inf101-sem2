@@ -39,7 +39,9 @@ public interface ViewableSnakeModel {
  */
     GameState getGameState();
     
-    //void getScore();
+    int getScore();
+
+    void checkApple();
 
 
 

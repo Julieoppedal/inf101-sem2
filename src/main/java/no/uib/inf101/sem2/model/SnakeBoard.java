@@ -26,5 +26,9 @@ public class SnakeBoard extends Grid<Character> {
         return sb.toString();
     }
 
+    public void removeObject(int x, int y) {
+        set(new CellPosition(x, y), '-');
+    }
+
     
 }

@@ -8,12 +8,12 @@ public interface ControllableSnake {
     
     GameState getGameState();
 
-    // void restartGame();
+    void restartGame();
 
-    //int getScore();
+    int getScore();
 
-    //int getTimeBetweenTicks();
+    int getTimeBetweenTicks();
 
-    //void clockTick();
+    void clockTick();
     
 }

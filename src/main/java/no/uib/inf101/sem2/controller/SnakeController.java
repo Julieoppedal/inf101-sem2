@@ -19,7 +19,7 @@ public class SnakeController implements java.awt.event.KeyListener {
 
     private final ControllableSnake consol;
     private final SnakeView snakeView;
-   // private final Timer timer;
+    private final Timer timer;
 
     /**
 
@@ -33,9 +33,9 @@ Constructs a new TetrisController with the specified ControllableTetrisModel and
         this.consol = consol;
 
         // Initialize timer
-        //this.timer = new Timer(consol.getTimeBetweenTicks(), this::clockTick);
-        //this.timer.setInitialDelay(0);
-        //this.timer.start();
+        this.timer = new Timer(consol.getTimeBetweenTicks(), this::clockTick);
+        this.timer.setInitialDelay(0);
+        this.timer.start();
 
         
 
@@ -69,6 +69,9 @@ Responds to key pressed events from the TetrisView and updates the model and vie
             consol.moveSnake(0,-1);
             // Up arrow was pressed
         }
+        else if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            consol.restartGame();
+        }
         snakeView.repaint();
     }
 
@@ -97,8 +100,8 @@ Updates the model and view when the timer goes.
 @param e the ActionEvent that occurred.
 */
 
-    /*public void clockTick(ActionEvent e) {
+    public void clockTick(ActionEvent e) {
         consol.clockTick();
         snakeView.repaint();
-    }*/
+    }
 }

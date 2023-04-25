@@ -3,6 +3,10 @@ package no.uib.inf101.sem2.model;
 import no.uib.inf101.sem2.grid.GridCell;
 import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.grid.GridDimension;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import no.uib.inf101.sem2.controller.ControllableSnake;
 import no.uib.inf101.sem2.view.ViewableSnakeModel;
 import no.uib.inf101.sem2.model.GameState;
@@ -19,10 +23,12 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
     private Apple apple;
     private int applesEaten;
     private int score;
+    private final Timer timer = new Timer();
+    private TimerTask task;
 
 
 
-    public SnakeModel(SnakeBoard board, AppleFactory appleFactory) {
+    public SnakeModel(SnakeBoard board, AppleFactory appleFactory, Snake snake) {
         this.board = board;
         this.appleFactory = appleFactory;
         this.apple = this.appleFactory.getApple(this.board);
@@ -58,6 +64,27 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
         return new Apple(apple.getX(), apple.getY());
     }
     
+    @Override
+    public void checkApple() {
+        GridCell<Character> headPosition = this.snake.getBody().get(0);
+        int headRow = headPosition.pos().row();
+        int headCol = headPosition.pos().col();
+        
+        if (headRow == this.apple.getX() && headCol == this.apple.getY()) {
+            this.score += 10;
+            this.applesEaten++;
+            
+            // remove the apple from the board
+            this.board.removeObject(this.apple.getX(), this.apple.getY());
+            
+            // get a new apple and update its position
+            this.apple = this.appleFactory.getApple(this.board);
+            
+            // increase the length of the snake by one
+            this.snake.grow();
+        }
+    }
+
 
     @Override
     public boolean moveSnake(int deltaRow, int deltaCol) {
@@ -75,14 +102,8 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
         // move the snake
         this.snake.move();
         
-        // check if the snake has eaten an apple
-        if (this.snake.hasEatenApple(this.apple)) {
-            // update the score and number of apples eaten
-            this.score += 10;
-            this.applesEaten++;
-            // get a new apple and update its position
-            this.apple = this.appleFactory.getApple(this.board);
-        }
+        // check if the snake has collided with the apple
+        checkApple();
         
         // check for collisions
         this.snake.checkCollision(board.rows(), board.cols());
@@ -94,6 +115,30 @@ public class SnakeModel implements ViewableSnakeModel, ControllableSnake {
         return true;
     }
 
-     
+    @Override
+    public int getScore() {
+        return this.score;
+    }
+
+    @Override
+    public void restartGame() {
+        this.snake = new Snake();
+        this.apple = this.appleFactory.getApple(this.board);
+        this.applesEaten = 0;
+        this.score = 0;
+        this.state = GameState.ACTIVE_GAME;
+    }
+
+    @Override
+    public int getTimeBetweenTicks() {
+        return 1000;
+    }
+
+    @Override
+    public void clockTick() {
+
+    }
+
+
 
 }
