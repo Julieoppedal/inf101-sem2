@@ -2,7 +2,7 @@ package no.uib.inf101.sem2.model;
 
 import no.uib.inf101.sem2.grid.CellPosition;
 import no.uib.inf101.sem2.grid.Grid;
-import no.uib.inf101.sem2.grid.GridCell;
+
 
 public class SnakeBoard extends Grid<Character> {
 

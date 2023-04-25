@@ -2,6 +2,7 @@ package no.uib.inf101.sem2.controller;
 
 import java.awt.event.KeyEvent;
 
+import no.uib.inf101.sem2.model.GameState;
 import no.uib.inf101.sem2.view.SnakeView;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent; 
@@ -52,6 +53,10 @@ Responds to key pressed events from the TetrisView and updates the model and vie
 
     @Override
     public void keyPressed(KeyEvent e){
+        if (consol.getGameState() == GameState.GAME_OVER && e.getKeyCode() != KeyEvent.VK_ENTER) {
+            // game is over, ignore arrow keys
+            return;
+        }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             consol.moveSnake(-1,0);
             // Left arrow was pressed
