@@ -8,6 +8,12 @@ public class RandomAppleFactory implements AppleFactory {
     
     private final Random random = new Random();
 
+/**
+ * Creates a new {@code Apple} object with random coordinates within the given grid.
+ * 
+ * @param grid the grid in which the apple should be placed.
+ * @return a new {@code Apple} object with random coordinates.
+ */
 
     @Override
     public Apple getApple(Grid<?> grid) {

@@ -39,12 +39,20 @@ public interface ViewableSnakeModel {
  */
     GameState getGameState();
     
+
+/**
+
+Returns the current score of the player.
+@return the current score of the player
+*/
     int getScore();
 
+/**
+
+Checks if the snake has eaten the apple and updates the game accordingly.
+*/
     void checkApple();
 
-
-
-    
+ 
     
 }

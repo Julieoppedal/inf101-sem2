@@ -19,7 +19,7 @@ import java.awt.Font;
 
 /**
 
-The TetrisView class is responsible for rendering the current state of the game.
+The SnakeView class is responsible for rendering the current state of the game.
 
 It extends the JPanel class and implements the paintComponent method to draw the game on screen.
 */
@@ -32,8 +32,8 @@ public class SnakeView extends JPanel {
 
 /**
 
-Constructs a new TetrisView object.
-@param model the ViewableTetrisModel to render
+Constructs a new SnakeView object.
+@param model the ViewableSnakeModel to render
 */
     public SnakeView(ViewableSnakeModel model) {
         this.model = model;
@@ -44,7 +44,7 @@ Constructs a new TetrisView object.
 
         this.scoreLabel = new JLabel();
         this.scoreLabel.setFont(new Font("Calibri", Font.BOLD, 20));
-        this.scoreLabel.setForeground(Color.RED);
+        this.scoreLabel.setForeground(Color.BLUE);
         this.add(scoreLabel);
     }
 /**
@@ -90,15 +90,7 @@ Draws the game board, including the falling tile and the tiles already on the bo
         
 
     }
-/**
 
-Draws a collection of cells onto the graphics object using the provided cell position to pixel converter
-and color theme.
-@param g2d the Graphics2D object to use for drawing
-@param cells the cells to draw
-@param cptpc the cell position to pixel converter to use for translating cell positions to pixels
-@param ct the color theme to use for drawing the cells
-*/
     private static void drawCells(Graphics2D g2d, Iterable<GridCell<Character>> cells, CellPositionToPixelConverter cptpc, ColorTheme ct) {
         for (GridCell<Character> cell : cells) {
             Rectangle2D cellRect = cptpc.getBoundsForCell(cell.pos());

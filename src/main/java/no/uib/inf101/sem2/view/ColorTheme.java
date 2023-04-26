@@ -48,7 +48,18 @@ Returns the color of the text displayed when the game is over.
 
     Color getGameOverText();
 
+/**
+
+Returns the color of the apple diplayed on the Snake board.
+@return The color of the apple.
+*/
     Color getAppleColor();
+
+/**
+
+Returns the color of the snake head diplayed on the Snake board.
+@return The color of the snake head.
+*/
 
     Color getSnakeHeadColor();
 
