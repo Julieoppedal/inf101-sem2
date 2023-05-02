@@ -50,3 +50,6 @@ For å begrense tilgangen til modellen, kan vi ha et grensesnitt kalt `Controlla
 
 
 Se [oppgaveteksten](./OPPGAVETEKST.md) til semesteroppgave 2. Denne README -filen kan du endre som en del av dokumentasjonen til programmet, hvor du beskriver for en bruker hvordan programmet skal benyttes.
+
+https://www.youtube.com/shorts/cHZ8zq_Bycc
+
