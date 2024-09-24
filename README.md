@@ -53,3 +53,7 @@ Se [oppgaveteksten](./OPPGAVETEKST.md) til semesteroppgave 2. Denne README -file
 
 https://www.youtube.com/shorts/cHZ8zq_Bycc
 
+
+
+
+
